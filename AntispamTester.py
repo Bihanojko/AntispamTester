@@ -30,19 +30,16 @@ for TestFolder in sorted(Dirs):
     SpamList = ['./Tests/' + TestFolder + '/' + SpamFolderName + '/{0}'.format(i) for i in SpamList]
     HamList = ['./Tests/' + TestFolder + '/' + HamFolderName + '/{0}'.format(i) for i in HamList]
 
-    SpamList = " ".join(SpamList)
-    HamList = " ".join(HamList)
-
     SpamOutput = b""
     HamOutput = b""
 
     IterationCount = len(SpamList) if len(SpamList) > len(HamList) else len(HamList)
-    IterationCount /= 100000
+    IterationCount /= 1000
 
     # split to prevent "too many arguments" error
     for i in range(int(IterationCount) + 1):
-        SpamOutput += subprocess.check_output('./antispam ' + SpamList[i * 100000 : (i+1) * 100000], shell=True)
-        HamOutput += subprocess.check_output('./antispam ' + HamList[i * 100000  : (i+1) * 100000], shell=True)
+        SpamOutput += subprocess.check_output('./antispam ' + " ".join(SpamList[i * 1000 : (i+1) * 1000]), shell=True)
+        HamOutput += subprocess.check_output('./antispam ' + " ".join(HamList[i * 1000 : (i+1) * 1000]), shell=True)
 
     SpamOutput = SpamOutput.split(b'\n')
     HamOutput = HamOutput.split(b'\n')
