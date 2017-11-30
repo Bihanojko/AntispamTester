@@ -58,14 +58,14 @@ for TestFolder in sorted(Dirs):
 
 # write result summarization to terminal
 sys.stdout.write("TOTAL SPAM TESTED:\t\t" + str(SpamCount) + "\n")
-sys.stdout.write("\tSPAM MARKED AS SPAM:\t" + "\033[0;32m" + str(SpamCount - (len(SpamAccepted) + len(SpamFailed))) + "\033[0;0m" + "\n")
-sys.stdout.write("\tSPAM MARKED AS HAM:\t" + "\033[1;31m" + str(len(SpamAccepted)) + "\033[0;0m" + "\n")
-sys.stdout.write("\tSPAM FAILED:\t\t" + "\033[1;31m" + str(len(SpamFailed)) + "\033[0;0m" + "\n\n")
+sys.stdout.write("\tSPAM MARKED AS SPAM:\t" + "\033[0;32m" + str(SpamCount - (len(SpamAccepted) + len(SpamFailed))) + "\t" + str((SpamCount - (len(SpamAccepted) + len(SpamFailed)))/SpamCount) + " %\033[0;0m" + "\n")
+sys.stdout.write("\tSPAM MARKED AS HAM:\t" + "\033[1;31m" + str(len(SpamAccepted)) + "\t" + str(len(SpamAccepted)/SpamCount)  + " %\033[0;0m" + "\n")
+sys.stdout.write("\tSPAM FAILED:\t\t" + "\033[1;31m" + str(len(SpamFailed)) + "\t" + str(len(SpamFailed)/SpamCount)  + " %\033[0;0m" + "\n\n")
 
 sys.stdout.write("TOTAL HAM TESTED:\t\t" + str(HamCount) + "\n")
-sys.stdout.write("\tHAM MARKED AS HAM:\t" + "\033[0;32m" + str(HamCount - (len(HamRejected) + len(HamFailed))) + "\033[0;0m" + "\n")
-sys.stdout.write("\tHAM MARKED AS SPAM:\t" + "\033[1;31m" + str(len(HamRejected)) + "\033[0;0m" + "\n")
-sys.stdout.write("\tHAM FAILED:\t\t" + "\033[1;31m" + str(len(HamFailed)) + "\033[0;0m" + "\n")
+sys.stdout.write("\tHAM MARKED AS HAM:\t" + "\033[0;32m" + str(HamCount - (len(HamRejected) + len(HamFailed))) + "\t" + str((HamCount - (len(HamRejected) + len(HamFailed)))/HamCount)  + " %\033[0;0m" + "\n")
+sys.stdout.write("\tHAM MARKED AS SPAM:\t" + "\033[1;31m" + str(len(HamRejected)) + "\t" + str(len(HamRejected)/HamCount)   + " %\033[0;0m" + "\n")
+sys.stdout.write("\tHAM FAILED:\t\t" + "\033[1;31m" + str(len(HamFailed)) + "\t" + str(len(HamFailed)/HamCount)   + " %\033[0;0m" + "\n")
 
 # write result details to files SpamResults.txt and HamResults.txt
 SpamResults = open("SpamResults.txt", "w")
