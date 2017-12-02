@@ -14,4 +14,7 @@ Put AntispamTester.py to the same folder as antispam. E-mails, which are to be t
     - ./[subfolder2_name]
     ...
 
+
+For running only selected subfolders, specify their names as AntispamTester.py arguments.
+
 Large e-mail database: https://labs-repos.iit.demokritos.gr/skel/i-config/downloads/enron-spam/preprocessed/
