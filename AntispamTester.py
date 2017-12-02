@@ -56,16 +56,43 @@ for TestFolder in sorted(Dirs):
         elif b'FAIL' in line:
             HamFailed.append(line[:line.find(b'FAIL')])
 
+CorrectSpamPercentage = (SpamCount - (len(SpamAccepted) + len(SpamFailed)))/SpamCount
+CorrectHamPercentage = (HamCount - (len(HamRejected) + len(HamFailed)))/HamCount
+
 # write result summarization to terminal
 sys.stdout.write("TOTAL SPAM TESTED:\t\t" + str(SpamCount) + "\n")
-sys.stdout.write("\tSPAM MARKED AS SPAM:\t" + "\033[0;32m" + str(SpamCount - (len(SpamAccepted) + len(SpamFailed))) + "\t" + str((SpamCount - (len(SpamAccepted) + len(SpamFailed)))/SpamCount) + " %\033[0;0m" + "\n")
-sys.stdout.write("\tSPAM MARKED AS HAM:\t" + "\033[1;31m" + str(len(SpamAccepted)) + "\t" + str(len(SpamAccepted)/SpamCount)  + " %\033[0;0m" + "\n")
-sys.stdout.write("\tSPAM FAILED:\t\t" + "\033[1;31m" + str(len(SpamFailed)) + "\t" + str(len(SpamFailed)/SpamCount)  + " %\033[0;0m" + "\n\n")
+sys.stdout.write("\tSPAM MARKED AS SPAM:\t" + "\033[0;32m" + str(SpamCount - (len(SpamAccepted) + len(SpamFailed))) + "\t" + str(CorrectSpamPercentage) + " %\033[0;0m" + "\n")
+sys.stdout.write("\tSPAM MARKED AS HAM:\t" + "\033[1;31m" + str(len(SpamAccepted)) + "\t" + str((len(SpamAccepted)/SpamCount) * 100)  + " %\033[0;0m" + "\n")
+sys.stdout.write("\tSPAM FAILED:\t\t" + "\033[1;31m" + str(len(SpamFailed)) + "\t" + str((len(SpamFailed)/SpamCount) * 100) + " %\033[0;0m" + "\n\n")
 
 sys.stdout.write("TOTAL HAM TESTED:\t\t" + str(HamCount) + "\n")
-sys.stdout.write("\tHAM MARKED AS HAM:\t" + "\033[0;32m" + str(HamCount - (len(HamRejected) + len(HamFailed))) + "\t" + str((HamCount - (len(HamRejected) + len(HamFailed)))/HamCount)  + " %\033[0;0m" + "\n")
-sys.stdout.write("\tHAM MARKED AS SPAM:\t" + "\033[1;31m" + str(len(HamRejected)) + "\t" + str(len(HamRejected)/HamCount)   + " %\033[0;0m" + "\n")
-sys.stdout.write("\tHAM FAILED:\t\t" + "\033[1;31m" + str(len(HamFailed)) + "\t" + str(len(HamFailed)/HamCount)   + " %\033[0;0m" + "\n")
+sys.stdout.write("\tHAM MARKED AS HAM:\t" + "\033[0;32m" + str(HamCount - (len(HamRejected) + len(HamFailed))) + "\t" + str(CorrectHamPercentage)  + " %\033[0;0m" + "\n")
+sys.stdout.write("\tHAM MARKED AS SPAM:\t" + "\033[1;31m" + str(len(HamRejected)) + "\t" + str((len(HamRejected)/HamCount) * 100)   + " %\033[0;0m" + "\n")
+sys.stdout.write("\tHAM FAILED:\t\t" + "\033[1;31m" + str(len(HamFailed)) + "\t" + str((len(HamFailed)/HamCount) * 100)   + " %\033[0;0m" + "\n")
+
+CorrectSpamPercentage = round(CorrectSpamPercentage)
+CorrectHamPercentage = round(CorrectHamPercentage)
+
+sys.stdout.write("\nYou would obtain: ")
+if CorrectHamPercentage >= 95 and CorrectSpamPercentage >= 45:
+    sys.stdout.write("8 points! Congrats!")
+elif CorrectHamPercentage >= 93 and CorrectSpamPercentage >= 40:
+    sys.stdout.write("7 points! Great work!")
+elif CorrectHamPercentage >= 91 and CorrectSpamPercentage >= 37:
+    sys.stdout.write("6 points! Good job!")
+elif CorrectHamPercentage >= 89 and CorrectSpamPercentage >= 34:
+    sys.stdout.write("5 points! Nice!")
+elif CorrectHamPercentage >= 87 and CorrectSpamPercentage >= 30:
+    sys.stdout.write("4 points! Not bad!")
+elif CorrectHamPercentage >= 85 and CorrectSpamPercentage >= 26:
+    sys.stdout.write("3 points! You can do better than this!")
+elif CorrectHamPercentage >= 83 and CorrectSpamPercentage >= 23:
+    sys.stdout.write("2 points! Keep working!")
+elif CorrectHamPercentage >= 80 and CorrectSpamPercentage >= 20:
+    sys.stdout.write("1 points! You've got a long way ahead!")
+else:
+    sys.stdout.write("0 points! Common!")
+sys.stdout.write("\n")
 
 # write result details to files SpamResults.txt and HamResults.txt
 SpamResults = open("SpamResults.txt", "w")
