@@ -56,8 +56,8 @@ for TestFolder in sorted(Dirs):
         elif b'FAIL' in line:
             HamFailed.append(line[:line.find(b'FAIL')])
 
-CorrectSpamPercentage = (SpamCount - (len(SpamAccepted) + len(SpamFailed)))/SpamCount
-CorrectHamPercentage = (HamCount - (len(HamRejected) + len(HamFailed)))/HamCount
+CorrectSpamPercentage = ((SpamCount - (len(SpamAccepted) + len(SpamFailed)))/SpamCount) * 100 
+CorrectHamPercentage = ((HamCount - (len(HamRejected) + len(HamFailed)))/HamCount) * 100
 
 # write result summarization to terminal
 sys.stdout.write("TOTAL SPAM TESTED:\t\t" + str(SpamCount) + "\n")
