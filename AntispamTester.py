@@ -9,6 +9,8 @@ SpamFolderName = 'spam'
 HamFolderName = 'ham'
 
 Dirs = os.listdir(os.curdir + '/Tests')
+if len(sys.argv) > 1:
+    Dirs = sys.argv[1:]
 
 SpamCount = 0
 HamCount = 0
