@@ -61,14 +61,14 @@ CorrectHamPercentage = ((HamCount - (len(HamRejected) + len(HamFailed)))/HamCoun
 
 # write result summarization to terminal
 sys.stdout.write("TOTAL SPAM TESTED:\t\t" + str(SpamCount) + "\n")
-sys.stdout.write("\tSPAM MARKED AS SPAM:\t" + "\033[0;32m" + str(SpamCount - (len(SpamAccepted) + len(SpamFailed))) + "\t" + str(CorrectSpamPercentage) + " %\033[0;0m" + "\n")
-sys.stdout.write("\tSPAM MARKED AS HAM:\t" + "\033[1;31m" + str(len(SpamAccepted)) + "\t" + str((len(SpamAccepted)/SpamCount) * 100)  + " %\033[0;0m" + "\n")
-sys.stdout.write("\tSPAM FAILED:\t\t" + "\033[1;31m" + str(len(SpamFailed)) + "\t" + str((len(SpamFailed)/SpamCount) * 100) + " %\033[0;0m" + "\n\n")
+sys.stdout.write("\tSPAM MARKED AS SPAM:\t" + "\033[0;32m" + str(SpamCount - (len(SpamAccepted) + len(SpamFailed))) + "\t%.2f" % CorrectSpamPercentage + " %\033[0;0m" + "\n")
+sys.stdout.write("\tSPAM MARKED AS HAM:\t" + "\033[1;31m" + str(len(SpamAccepted)) + "\t%.2f" % ((len(SpamAccepted)/SpamCount) * 100)  + " %\033[0;0m" + "\n")
+sys.stdout.write("\tSPAM FAILED:\t\t" + "\033[1;31m" + str(len(SpamFailed)) + "\t%.2f" % ((len(SpamFailed)/SpamCount) * 100) + " %\033[0;0m" + "\n\n")
 
 sys.stdout.write("TOTAL HAM TESTED:\t\t" + str(HamCount) + "\n")
-sys.stdout.write("\tHAM MARKED AS HAM:\t" + "\033[0;32m" + str(HamCount - (len(HamRejected) + len(HamFailed))) + "\t" + str(CorrectHamPercentage)  + " %\033[0;0m" + "\n")
-sys.stdout.write("\tHAM MARKED AS SPAM:\t" + "\033[1;31m" + str(len(HamRejected)) + "\t" + str((len(HamRejected)/HamCount) * 100)   + " %\033[0;0m" + "\n")
-sys.stdout.write("\tHAM FAILED:\t\t" + "\033[1;31m" + str(len(HamFailed)) + "\t" + str((len(HamFailed)/HamCount) * 100)   + " %\033[0;0m" + "\n")
+sys.stdout.write("\tHAM MARKED AS HAM:\t" + "\033[0;32m" + str(HamCount - (len(HamRejected) + len(HamFailed))) + "\t%.2f" % CorrectHamPercentage + " %\033[0;0m" + "\n")
+sys.stdout.write("\tHAM MARKED AS SPAM:\t" + "\033[1;31m" + str(len(HamRejected)) + "\t%.2f" % ((len(HamRejected)/HamCount) * 100)  + " %\033[0;0m" + "\n")
+sys.stdout.write("\tHAM FAILED:\t\t" + "\033[1;31m" + str(len(HamFailed)) + "\t%.2f" % ((len(HamFailed)/HamCount) * 100)  + " %\033[0;0m" + "\n")
 
 CorrectSpamPercentage = round(CorrectSpamPercentage)
 CorrectHamPercentage = round(CorrectHamPercentage)
