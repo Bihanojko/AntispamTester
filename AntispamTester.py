@@ -95,7 +95,7 @@ elif CorrectHamPercentage >= 83 and CorrectSpamPercentage >= 23:
 elif CorrectHamPercentage >= 80 and CorrectSpamPercentage >= 20:
     sys.stdout.write("1 points! You've got a long way ahead!")
 else:
-    sys.stdout.write("0 points! Common!")
+    sys.stdout.write("0 points! Come on!")
 sys.stdout.write("\n")
 
 # write result details to files SpamResults.txt and HamResults.txt
